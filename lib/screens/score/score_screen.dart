@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../../constants.dart';
 import '../../../controllers/question_controller.dart';
 import '../../../screens/welcome/welcome_screen.dart';
+import '../../../screens/leaderboard/leaderboard.dart';
 
 class ScoreScreen extends StatelessWidget {
   @override
@@ -17,6 +18,16 @@ class ScoreScreen extends StatelessWidget {
           ),
         ),
         child: Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            // Flutter show the back button automatically
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            actions: [
+              TextButton(onPressed: () =>
+              {Get.to(LeaderboardScreen())}, child: Text("Leaderboard")),
+            ],
+          ),
           backgroundColor: Colors.transparent,
           body: Stack(
             fit: StackFit.expand,

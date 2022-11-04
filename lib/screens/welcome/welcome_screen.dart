@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/screens/quiz/quiz_screen.dart';
+import '../../../screens/leaderboard/leaderboard.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -17,6 +18,17 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             child: Scaffold(
+              extendBodyBehindAppBar: true,
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                // Flutter show the back button automatically
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                actions: [
+                  TextButton(onPressed: () =>
+                  {Get.to(LeaderboardScreen())}, child: Text("Leaderboard")),
+                ],
+              ),
               backgroundColor: Colors.transparent,
               body: Stack(
                 children: [
