@@ -1,21 +1,22 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import '../../../models/Questions.dart';
 import '../../../screens/score/score_screen.dart';
 
 // We use get package for our state management
 
 class QuestionController extends GetxController
-    with SingleGetTickerProviderMixin {
+    with GetSingleTickerProviderStateMixin {
   // Lets animated our progress bar
 
   AnimationController _animationController;
   Animation _animation;
+
   // so that we can access our animation outside
   Animation get animation => this._animation;
 
   PageController _pageController;
+
   PageController get pageController => this._pageController;
 
   List<Question> _questions = sample_data
@@ -27,22 +28,28 @@ class QuestionController extends GetxController
             answer: question['answer_index']),
       )
       .toList();
+
   List<Question> get questions => this._questions;
 
   bool _isAnswered = false;
+
   bool get isAnswered => this._isAnswered;
 
   int _correctAns;
+
   int get correctAns => this._correctAns;
 
   int _selectedAns;
+
   int get selectedAns => this._selectedAns;
 
   // for more about obs please check documentation
   RxInt _questionNumber = 1.obs;
+
   RxInt get questionNumber => this._questionNumber;
 
   int _numOfCorrectAns = 0;
+
   int get numOfCorrectAns => this._numOfCorrectAns;
 
   // called immediately after the widget is allocated memory
@@ -51,7 +58,7 @@ class QuestionController extends GetxController
     // Our animation duration is 60 s
     // so our plan is to fill the progress bar within 60s
     _animationController =
-        AnimationController(duration: Duration(seconds: 20), vsync: this);
+        AnimationController(duration: Duration(seconds: 10), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
       ..addListener(() {
         // update like setState
@@ -69,8 +76,12 @@ class QuestionController extends GetxController
   @override
   void onClose() {
     super.onClose();
-    _animationController.dispose();
-    _pageController.dispose();
+    // Reset the counter
+    _animationController.reset();
+    _isAnswered = false;
+    _questionNumber.value = 1;
+    _numOfCorrectAns = 0;
+    _animationController.forward().whenComplete(nextQuestion);
   }
 
   void checkAns(Question question, int selectedIndex) {
