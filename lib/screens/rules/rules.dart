@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
-import 'package:quiz_app/screens/rules/rules.dart';
+import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 import '../../../screens/leaderboard/leaderboard.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class RulesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,7 +20,6 @@ class WelcomeScreen extends StatelessWidget {
             child: Scaffold(
               extendBodyBehindAppBar: true,
               appBar: AppBar(
-                automaticallyImplyLeading: false,
                 // Flutter show the back button automatically
                 backgroundColor: Colors.transparent,
                 elevation: 0,
@@ -41,52 +40,14 @@ class WelcomeScreen extends StatelessWidget {
                         children: [
                           Spacer(flex: 6),
                           //2/6
-                          // Text(
-                          //   "Let's Play Quiz,",
-                          //   style: Theme.of(context).textTheme.headline4.copyWith(
-                          //       color: Colors.white, fontWeight: FontWeight.bold),
-                          // ),
-                          // Text("Enter your details below"),
-                          // Spacer(), // 1/6
-                          TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xFF1C2341),
-                              hintText: "Full Name",
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
-                              ),
-                            ),
+                          Text(
+                            "Rules",
+                            style: Theme.of(context).textTheme.headline4.copyWith(
+                                color: Colors.white, fontWeight: FontWeight.bold),
                           ),
-                          Spacer(),
-                          TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xFF1C2341),
-                              hintText: "Mobile No.",
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
-                              ),
-                            ),
-                          ),
-                          Spacer(),
-                          // 1/6
-                          TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0xFF1C2341),
-                              hintText: "City",
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
-                              ),
-                            ),
-                          ),
-                          Spacer(),
+                          Spacer(), // 1/6
                           InkWell(
-                            onTap: () => Get.to(RulesScreen()),
+                            onTap: () => Get.to(QuizScreen()),
                             child: Container(
                               width: double.infinity,
                               alignment: Alignment.center,
@@ -95,7 +56,7 @@ class WelcomeScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 gradient: kPrimaryGradient,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
+                                BorderRadius.all(Radius.circular(12)),
                               ),
                               child: Text(
                                 "Lets Start Quiz",

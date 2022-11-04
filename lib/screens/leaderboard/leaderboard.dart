@@ -9,35 +9,32 @@ class LeaderboardScreen extends StatefulWidget {
 }
 
 class LeaderboardScreenState extends State<LeaderboardScreen> {
-
   List data;
 
   Future<String> getData() async {
-    var response = "[\r\n      {\r\n        \"title\": \"abc\"\r\n      },\r\n      {\r\n        \"title\": \"def\"\r\n      }\r\n    ]";
+    var response =
     // await http.get(
-    //     Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"),
-    //     headers: {
-    //       "Accept": "application/json"
-    //     }
-    // );
+    //     Uri.encodeFull("https://smokyquiz.herokuapp.com/getLeaderboard"),
+    //     headers: {"Accept": "application/json"});
+    "[\r\n      {\r\n        \"name\": \"abc\"\r\n      },\r\n      {\r\n        \"name\": \"def\"\r\n      }\r\n    ]";
 
     this.setState(() {
       data = json.decode(response);
     });
 
-    print(data[1]["title"]);
+    print(data[1]["name"]);
 
     return "Success!";
   }
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     this.getData();
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
         // Flutter show the back button automatically
@@ -49,9 +46,9 @@ class LeaderboardScreenState extends State<LeaderboardScreen> {
       ),
       body: new ListView.builder(
         itemCount: data == null ? 0 : data.length,
-        itemBuilder: (BuildContext context, int index){
+        itemBuilder: (BuildContext context, int index) {
           return new Card(
-            child: new Text(data[index]["title"]),
+            child: new Text(data[index]["name"]),
           );
         },
       ),
