@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/controllers/data_controller.dart';
 import 'package:quiz_app/screens/rules/rules.dart';
 import '../../../screens/leaderboard/leaderboard.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
+  @override
+  WelcomeScreenState createState() => new WelcomeScreenState();
+}
+
+class WelcomeScreenState extends State {
+  DataController _controller = Get.put(DataController());
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,8 +33,9 @@ class WelcomeScreen extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 actions: [
-                  TextButton(onPressed: () =>
-                  {Get.to(LeaderboardScreen())}, child: Text("Leaderboard")),
+                  TextButton(
+                      onPressed: () => {Get.to(LeaderboardScreen())},
+                      child: Text("Leaderboard")),
                 ],
               ),
               backgroundColor: Colors.transparent,
@@ -49,6 +58,13 @@ class WelcomeScreen extends StatelessWidget {
                           // Text("Enter your details below"),
                           // Spacer(), // 1/6
                           TextField(
+                            controller: _controller.textController_1,
+                            onChanged: (val) {
+                              this.setState(() {
+                                _controller.buttonEnabled =
+                                    _controller.checkTextFieldEmpty();
+                              });
+                            },
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Color(0xFF1C2341),
@@ -61,6 +77,13 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                           Spacer(),
                           TextField(
+                            controller: _controller.textController_2,
+                            onChanged: (val) {
+                              this.setState(() {
+                                _controller.buttonEnabled =
+                                    _controller.checkTextFieldEmpty();
+                              });
+                            },
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Color(0xFF1C2341),
@@ -74,6 +97,13 @@ class WelcomeScreen extends StatelessWidget {
                           Spacer(),
                           // 1/6
                           TextField(
+                            controller: _controller.textController_3,
+                            onChanged: (val) {
+                              this.setState(() {
+                                _controller.buttonEnabled =
+                                    _controller.checkTextFieldEmpty();
+                              });
+                            },
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Color(0xFF1C2341),
@@ -85,15 +115,24 @@ class WelcomeScreen extends StatelessWidget {
                             ),
                           ),
                           Spacer(),
-                          InkWell(
-                            onTap: () => Get.to(RulesScreen()),
+                          ElevatedButton(
+                            onPressed: _controller.buttonEnabled
+                                ? ()=>{Get.to(RulesScreen())}
+                                : null,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 0, vertical: 0),
+                            ),
                             child: Container(
                               width: double.infinity,
                               alignment: Alignment.center,
                               padding: EdgeInsets.all(kDefaultPadding * 0.75),
                               // 15
                               decoration: BoxDecoration(
-                                gradient: kPrimaryGradient,
+                                gradient: _controller.buttonEnabled
+                                    ? kPrimaryGradient
+                                    : kSecondaryGradient,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(12)),
                               ),

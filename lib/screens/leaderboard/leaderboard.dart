@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:quiz_app/constants.dart';
 
 class LeaderboardScreen extends StatefulWidget {
   @override
@@ -9,20 +10,16 @@ class LeaderboardScreen extends StatefulWidget {
 }
 
 class LeaderboardScreenState extends State<LeaderboardScreen> {
-  List data;
+  List data = [];
 
   Future<String> getData() async {
-    var response =
-    // await http.get(
-    //     Uri.encodeFull("https://smokyquiz.herokuapp.com/getLeaderboard"),
-    //     headers: {"Accept": "application/json"});
-    "[\r\n      {\r\n        \"name\": \"abc\"\r\n      },\r\n      {\r\n        \"name\": \"def\"\r\n      }\r\n    ]";
+    var response = await http.get(
+        Uri.parse("https://smokyquiz.herokuapp.com/getLeaderboard"),
+        headers: {"Accept": "application/json"});
 
     this.setState(() {
-      data = json.decode(response);
+      data = json.decode(response.body);
     });
-
-    print(data[1]["name"]);
 
     return "Success!";
   }
@@ -35,23 +32,119 @@ class LeaderboardScreenState extends State<LeaderboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: AppBar(
-        // Flutter show the back button automatically
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          // TextButton(onPressed: _controller.nextQuestion, child: Text("Leaderboard")),
-        ],
-      ),
-      body: new ListView.builder(
-        itemCount: data == null ? 0 : data.length,
-        itemBuilder: (BuildContext context, int index) {
-          return new Card(
-            child: new Text(data[index]["name"]),
-          );
-        },
-      ),
-    );
+    return Container(
+        padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        constraints: BoxConstraints.expand(),
+        color: Color(0xFF8D644B),
+        child: new Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              // Flutter show the back button automatically
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              actions: [],
+            ),
+            body: Stack(children: <Widget>[
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  'Name',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ))),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                      child: Column(
+                    children: [
+                      Text(
+                        'Score',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ],
+                  )),
+                  Expanded(
+                      child: Column(
+                    children: [
+                      Text(
+                        'Date',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ],
+                  )),
+                ],
+              ),
+              ListView.builder(
+                  padding: EdgeInsets.only(top: 30),
+                  itemCount: data.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 10.0),
+                                      child: Text(
+                                        data[index]["name"],
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      ))),
+                              Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 10.0),
+                                      child: Text(
+                                        data[index]["city"],
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14),
+                                      ))),
+                              SizedBox(height: 30),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                            child: Column(
+                          children: [
+                            Text(
+                              data[index]["score"].toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                            SizedBox(height: 20),
+                          ],
+                        )),
+                        Expanded(
+                            child: Column(
+                          children: [
+                            Text(
+                              data[index]["time"].toString().substring(0, 10),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 14),
+                            ),
+                            SizedBox(height: 20),
+                          ],
+                        ))
+                      ],
+                    );
+                  }),
+            ])));
   }
 }

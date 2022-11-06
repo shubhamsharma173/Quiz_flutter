@@ -4,11 +4,15 @@ import '../../../constants.dart';
 import '../../../controllers/question_controller.dart';
 import '../../../screens/welcome/welcome_screen.dart';
 import '../../../screens/leaderboard/leaderboard.dart';
+import 'package:quiz_app/controllers/data_controller.dart';
 
 class ScoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController _qnController = Get.put(QuestionController());
+    DataController _controller = Get.put(DataController());
+
+    _controller.submitScore();
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
         decoration: BoxDecoration(
@@ -24,8 +28,9 @@ class ScoreScreen extends StatelessWidget {
             backgroundColor: Colors.transparent,
             elevation: 0,
             actions: [
-              TextButton(onPressed: () =>
-              {Get.to(LeaderboardScreen())}, child: Text("Leaderboard")),
+              TextButton(
+                  onPressed: () => {Get.to(LeaderboardScreen())},
+                  child: Text("Leaderboard")),
             ],
           ),
           backgroundColor: Colors.transparent,
@@ -52,8 +57,7 @@ class ScoreScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   InkWell(
-                    onTap: () =>
-                        {Get.deleteAll(), Get.to(WelcomeScreen())},
+                    onTap: () => {Get.deleteAll(), Get.to(WelcomeScreen())},
                     child: Container(
                       width: double.infinity,
                       alignment: Alignment.center,

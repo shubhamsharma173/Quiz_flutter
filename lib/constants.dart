@@ -10,5 +10,9 @@ const kPrimaryGradient = LinearGradient(
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
 );
-
+const kSecondaryGradient = LinearGradient(
+  colors: [Colors.amber,Colors.white],
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+);
 const double kDefaultPadding = 20.0;

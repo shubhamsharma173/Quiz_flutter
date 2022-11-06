@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/screens/quiz/quiz_screen.dart';
+import 'package:quiz_app/screens/video_player/video_player.dart';
 import '../../../screens/leaderboard/leaderboard.dart';
 
 class RulesScreen extends StatelessWidget {
+  QuestionController _qnController = Get.put(QuestionController());
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -13,7 +17,7 @@ class RulesScreen extends StatelessWidget {
             constraints: BoxConstraints.expand(),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/bg.jpg"),
+                image: AssetImage("assets/images/rulesbg.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -24,8 +28,9 @@ class RulesScreen extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 actions: [
-                  TextButton(onPressed: () =>
-                  {Get.to(LeaderboardScreen())}, child: Text("Leaderboard")),
+                  TextButton(
+                      onPressed: () => {Get.to(LeaderboardScreen())},
+                      child: Text("Leaderboard")),
                 ],
               ),
               backgroundColor: Colors.transparent,
@@ -39,15 +44,9 @@ class RulesScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Spacer(flex: 6),
-                          //2/6
-                          Text(
-                            "Rules",
-                            style: Theme.of(context).textTheme.headline4.copyWith(
-                                color: Colors.white, fontWeight: FontWeight.bold),
-                          ),
-                          Spacer(), // 1/6
                           InkWell(
-                            onTap: () => Get.to(QuizScreen()),
+                            onTap: () =>
+                                {_qnController.onClose(), Get.to(()=>VideoPlayerWidget())},
                             child: Container(
                               width: double.infinity,
                               alignment: Alignment.center,
@@ -56,7 +55,7 @@ class RulesScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 gradient: kPrimaryGradient,
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(12)),
+                                    BorderRadius.all(Radius.circular(12)),
                               ),
                               child: Text(
                                 "Lets Start Quiz",
