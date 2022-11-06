@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
-import 'package:quiz_app/controllers/question_controller.dart';
-import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 import 'package:quiz_app/screens/video_player/video_player.dart';
 import '../../../screens/leaderboard/leaderboard.dart';
 
 class RulesScreen extends StatelessWidget {
-  QuestionController _qnController = Get.put(QuestionController());
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +42,7 @@ class RulesScreen extends StatelessWidget {
                         children: [
                           Spacer(flex: 6),
                           InkWell(
-                            onTap: () =>
-                                {_qnController.onClose(), Get.to(()=>VideoPlayerWidget())},
+                            onTap: () => Get.to(VideoPlayerWidget()),
                             child: Container(
                               width: double.infinity,
                               alignment: Alignment.center,

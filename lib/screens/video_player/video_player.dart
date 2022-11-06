@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:quiz_app/screens/score/score_screen.dart';
+import 'package:quiz_app/controllers/question_controller.dart';
+import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:async';
+import 'package:get/get.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
+
   @override
   _VideoPlayerState createState() => new _VideoPlayerState();
 }
 
 class _VideoPlayerState extends State<VideoPlayerWidget> {
+  QuestionController _qnController = Get.put(QuestionController());
+
   VideoPlayerController _videoPlayerController;
   Future<void> _initializeVideoPlayerFuture;
 
@@ -32,7 +37,8 @@ class _VideoPlayerState extends State<VideoPlayerWidget> {
       if(_videoPlayerController.value.position == _videoPlayerController.value.duration && _videoPlayerController.value.duration > Duration(seconds: 1)) {
         print('video Ended-------------------');
         dispose();
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  ScoreScreen()));
+        _qnController.onClose();
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  QuizScreen()));
       }
     });
   }
