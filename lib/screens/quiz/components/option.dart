@@ -29,7 +29,7 @@ class Option extends StatelessWidget {
                 return kRedColor;
               }
             }
-            return kGrayColor;
+            return Colors.black;
           }
 
           IconData getTheRightIcon() {
@@ -42,7 +42,7 @@ class Option extends StatelessWidget {
               margin: EdgeInsets.only(top: kDefaultPadding),
               padding: EdgeInsets.all(kDefaultPadding),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFFF2BD8B),
                 border: Border.all(color: getTheRightColor()),
                 borderRadius: BorderRadius.circular(15),
               ),
@@ -51,19 +51,19 @@ class Option extends StatelessWidget {
                 children: [
                   Text(
                     "${index + 1}. $text",
-                    style: TextStyle(color: getTheRightColor(), fontSize: 16),
+                    style: TextStyle(color: getTheRightColor(),fontWeight: FontWeight.w500, fontSize: 16),
                   ),
                   Container(
                     height: 26,
                     width: 26,
                     decoration: BoxDecoration(
-                      color: getTheRightColor() == kGrayColor
+                      color: getTheRightColor() == Colors.black
                           ? Colors.transparent
                           : getTheRightColor(),
                       borderRadius: BorderRadius.circular(50),
                       border: Border.all(color: getTheRightColor()),
                     ),
-                    child: getTheRightColor() == kGrayColor
+                    child: getTheRightColor() == Colors.black
                         ? null
                         : Icon(getTheRightIcon(), size: 16),
                   )

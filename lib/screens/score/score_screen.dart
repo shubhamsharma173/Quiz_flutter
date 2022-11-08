@@ -13,24 +13,45 @@ class ScoreScreen extends StatelessWidget {
     DataController _controller = Get.put(DataController());
 
     _controller.submitScore();
+    String getBG() {
+      if (_qnController.numOfCorrectAns == 1) {
+        return "assets/images/2.png";
+      } else if (_qnController.numOfCorrectAns == 2) {
+        return "assets/images/3.png";
+      } else if (_qnController.numOfCorrectAns == 3) {
+        return "assets/images/4.png";
+      } else if (_qnController.numOfCorrectAns == 4) {
+        return "assets/images/5.png";
+      } else if (_qnController.numOfCorrectAns == 5) {
+        return "assets/images/6.png";
+      } else {
+        return "assets/images/1.png";
+      }
+    }
+
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/bg.jpg"),
+            image: AssetImage(getBG()),
             fit: BoxFit.cover,
           ),
         ),
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             // Flutter show the back button automatically
             backgroundColor: Colors.transparent,
             elevation: 0,
             actions: [
-              TextButton(
-                  onPressed: () => {Get.to(LeaderboardScreen())},
-                  child: Text("Leaderboard")),
+              IconButton(
+                icon: Icon(
+                  Icons.leaderboard,
+                  color: Colors.white,
+                ),
+                onPressed: () => {Get.to(LeaderboardScreen())},
+              )
             ],
           ),
           backgroundColor: Colors.transparent,
@@ -39,23 +60,22 @@ class ScoreScreen extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  Spacer(flex: 4),
+                  Spacer(flex: 1),
                   Text(
                     "Score",
                     style: Theme.of(context)
                         .textTheme
                         .headline3
-                        .copyWith(color: kSecondaryColor),
+                        .copyWith(color: Colors.white),
                   ),
-                  Spacer(flex: 1),
                   Text(
                     "${_qnController.numOfCorrectAns * 20}/${_qnController.questions.length * 20}",
                     style: Theme.of(context)
                         .textTheme
                         .headline4
-                        .copyWith(color: kSecondaryColor),
+                        .copyWith(color: Colors.white),
                   ),
-                  Spacer(),
+                  Spacer(flex: 6),
                   InkWell(
                     onTap: () => {Get.deleteAll(), Get.to(WelcomeScreen())},
                     child: Container(
@@ -69,14 +89,15 @@ class ScoreScreen extends StatelessWidget {
                       ),
                       child: Text(
                         "Play again",
-                        style: Theme.of(context)
-                            .textTheme
-                            .button
-                            .copyWith(color: Colors.black),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1,
+                            fontSize: 18),
                       ),
                     ),
                   ),
-                  Spacer(flex: 4),
+                  Spacer(flex: 1),
                 ],
               )
             ],

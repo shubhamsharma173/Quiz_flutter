@@ -31,39 +31,12 @@ class Body extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 130),
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                     child: ProgressBar(),
                   ),
-                  SizedBox(height: kDefaultPadding),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    child: Obx(
-                      () => Text.rich(
-                        TextSpan(
-                          text:
-                              "Question ${_questionController.questionNumber.value}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4
-                              .copyWith(color: kSecondaryColor),
-                          children: [
-                            TextSpan(
-                              text: "/${_questionController.questions.length}",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5
-                                  .copyWith(color: kSecondaryColor),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Divider(thickness: 1.5),
-                  SizedBox(height: kDefaultPadding),
                   Expanded(
                     child: PageView.builder(
                       // Block swipe to next qn
@@ -75,6 +48,30 @@ class Body extends StatelessWidget {
                           question: _questionController.questions[index]),
                     ),
                   ),
+                  Center(
+                    child: Obx(
+                          () => Text.rich(
+                        TextSpan(
+                          text:
+                          "Question ${_questionController.questionNumber.value}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline4
+                              .copyWith(color: Colors.white),
+                          children: [
+                            TextSpan(
+                              text: "/${_questionController.questions.length}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5
+                                  .copyWith(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 150),
                 ],
               ),
             )

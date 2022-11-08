@@ -33,9 +33,13 @@ class WelcomeScreenState extends State {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 actions: [
-                  TextButton(
-                      onPressed: () => {Get.to(LeaderboardScreen())},
-                      child: Text("Leaderboard")),
+                  IconButton(
+                    icon: Icon(
+                      Icons.leaderboard,
+                      color: Colors.white,
+                    ),
+                    onPressed: () => {Get.to(LeaderboardScreen())},
+                  )
                 ],
               ),
               backgroundColor: Colors.transparent,
@@ -117,7 +121,7 @@ class WelcomeScreenState extends State {
                           Spacer(),
                           ElevatedButton(
                             onPressed: _controller.buttonEnabled
-                                ? ()=>{Get.to(RulesScreen())}
+                                ? () => {Get.to(RulesScreen())}
                                 : null,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
@@ -137,11 +141,12 @@ class WelcomeScreenState extends State {
                                     BorderRadius.all(Radius.circular(12)),
                               ),
                               child: Text(
-                                "Lets Start Quiz",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .button
-                                    .copyWith(color: Colors.black),
+                                "Register",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1,
+                                    fontSize: 18),
                               ),
                             ),
                           ),

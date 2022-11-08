@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/screens/video_player/video_player.dart';
+import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 import '../../../screens/leaderboard/leaderboard.dart';
 
 class RulesScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,13 +21,24 @@ class RulesScreen extends StatelessWidget {
             child: Scaffold(
               extendBodyBehindAppBar: true,
               appBar: AppBar(
+                leading: GestureDetector(
+                  onTap: () => {Get.deleteAll(), Get.to(WelcomeScreen())},
+                  child: Icon(
+                    Icons.home_filled, // add custom icons also
+                  ),
+                ),
+                automaticallyImplyLeading: false,
                 // Flutter show the back button automatically
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 actions: [
-                  TextButton(
-                      onPressed: () => {Get.to(LeaderboardScreen())},
-                      child: Text("Leaderboard")),
+                  IconButton(
+                    icon: Icon(
+                      Icons.leaderboard,
+                      color: Colors.white,
+                    ),
+                    onPressed: () => {Get.to(LeaderboardScreen())},
+                  )
                 ],
               ),
               backgroundColor: Colors.transparent,
@@ -55,10 +66,11 @@ class RulesScreen extends StatelessWidget {
                               ),
                               child: Text(
                                 "Lets Start Quiz",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .button
-                                    .copyWith(color: Colors.black),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1,
+                                    fontSize: 18),
                               ),
                             ),
                           ),
