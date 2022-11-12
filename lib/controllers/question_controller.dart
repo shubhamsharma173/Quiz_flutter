@@ -52,6 +52,8 @@ class QuestionController extends GetxController
 
   int get numOfCorrectAns => this._numOfCorrectAns;
 
+  double timeTaken = 0;
+
   // called immediately after the widget is allocated memory
   @override
   void onInit() {
@@ -93,6 +95,7 @@ class QuestionController extends GetxController
     if (_correctAns == _selectedAns) _numOfCorrectAns++;
 
     // It will stop the counter
+    this.timeTaken += _animationController.value;
     _animationController.stop();
     update();
 
@@ -115,7 +118,7 @@ class QuestionController extends GetxController
       // Once timer is finish go to the next qn
       _animationController.forward().whenComplete(nextQuestion);
     } else {
-      // Get package provide us simple way to naviigate another page
+      // Get package provide us simple way to navigate another page
       Get.to(ScoreScreen());
     }
   }

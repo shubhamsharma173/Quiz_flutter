@@ -14,7 +14,7 @@ class RulesScreen extends StatelessWidget {
             constraints: BoxConstraints.expand(),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/rulesbg.jpg"),
+                image: AssetImage("assets/images/rulesbg.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -65,7 +65,7 @@ class RulesScreen extends StatelessWidget {
                                     BorderRadius.all(Radius.circular(12)),
                               ),
                               child: Text(
-                                "Lets Start Quiz",
+                                "Ignite",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class RulesScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Spacer(flex: 2),
+                          SizedBox(height: 60,),
                           // it will take 2/6 spaces
                         ],
                       ),

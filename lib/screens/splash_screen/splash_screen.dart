@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 
-
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -21,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
         new MaterialPageRoute(
           builder: (BuildContext context) => WelcomeScreen(),
         ),
-            (Route<dynamic> route) => false);
+        (Route<dynamic> route) => false);
   }
 
   @override
@@ -30,9 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Center(
-        child: FlutterLogo(
-          size: 200,
-        ),
+        child: Image.asset('assets/icons/ic_launcher.png'),
       ),
     );
   }

@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/bg.jpg"),
+            image: AssetImage("assets/images/bg.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 130),
+                  SizedBox(height: 150),
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -50,10 +50,10 @@ class Body extends StatelessWidget {
                   ),
                   Center(
                     child: Obx(
-                          () => Text.rich(
+                      () => Text.rich(
                         TextSpan(
                           text:
-                          "Question ${_questionController.questionNumber.value}",
+                              "Question ${_questionController.questionNumber.value}",
                           style: Theme.of(context)
                               .textTheme
                               .headline4
@@ -71,7 +71,7 @@ class Body extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 150),
+                  SizedBox(height: 130),
                 ],
               ),
             )

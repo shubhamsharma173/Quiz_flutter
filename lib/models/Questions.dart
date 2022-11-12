@@ -41,6 +41,6 @@ const List sample_data = [
       'Fiery blend whisky',
       'Premium Scotch Whisky'
     ],
-    "answer_index": 1,
+    "answer_index": 0,
   },
 ];

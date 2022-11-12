@@ -31,6 +31,7 @@ class DataController extends GetxController
 
   Future<String> submitScore() async {
     if (!checkTextFieldEmpty()) {
+      return "Empty Field";
     } else {
       var response =
           await http.post(Uri.parse("https://smokyquiz.herokuapp.com/post"),
@@ -42,6 +43,7 @@ class DataController extends GetxController
                 'mobile': this.textController_2.text,
                 'city': this.textController_3.text,
                 'score': (_qnController.numOfCorrectAns * 20).toString(),
+                'timeTaken': (_qnController.timeTaken * 10).toStringAsFixed(2),
               }));
       print(response.statusCode);
       clearTextFieldOnStart();
@@ -61,7 +63,7 @@ class DataController extends GetxController
     text3 = textController_3.text;
 
     // Checking all TextFields.
-    if (text1 == '' || text2 == '' || text3 == '') {
+    if (text1 == '' || text2 == '' || text3 == '' || text2.length < 10) {
       // Put your code here which you want to execute when Text Field is Empty.
       print('Text Field is empty, Please Fill All Data');
       return false;

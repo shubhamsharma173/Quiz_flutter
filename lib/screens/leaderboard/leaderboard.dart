@@ -31,6 +31,11 @@ class LeaderboardScreenState extends State<LeaderboardScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -77,7 +82,7 @@ class LeaderboardScreenState extends State<LeaderboardScreen> {
                       child: Column(
                     children: [
                       Text(
-                        'Date',
+                        'Duration',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
@@ -135,7 +140,9 @@ class LeaderboardScreenState extends State<LeaderboardScreen> {
                             child: Column(
                           children: [
                             Text(
-                              data[index]["time"].toString().substring(0, 10),
+                              data[index]["timeTaken"].toString() != "null"
+                                  ? data[index]["timeTaken"].toString() + "s"
+                                  : "NA",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 14),
                             ),

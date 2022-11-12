@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/data_controller.dart';
@@ -21,7 +22,7 @@ class WelcomeScreenState extends State {
             constraints: BoxConstraints.expand(),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/bg.jpg"),
+                image: AssetImage("assets/images/welcomebg.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -69,11 +70,21 @@ class WelcomeScreenState extends State {
                                     _controller.checkTextFieldEmpty();
                               });
                             },
+                            style: TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                               filled: true,
-                              fillColor: Color(0xFF1C2341),
+                              fillColor: Color(0xFFF2BD8B),
                               hintText: "Full Name",
+                              hintStyle: TextStyle(color: Colors.black),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.grey, width: 0.0),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                              ),
                               border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.grey, width: 0.0),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(12)),
                               ),
@@ -81,6 +92,12 @@ class WelcomeScreenState extends State {
                           ),
                           Spacer(),
                           TextField(
+                            maxLength: 10,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            // Only numbers can be entered
                             controller: _controller.textController_2,
                             onChanged: (val) {
                               this.setState(() {
@@ -88,11 +105,22 @@ class WelcomeScreenState extends State {
                                     _controller.checkTextFieldEmpty();
                               });
                             },
+                            style: TextStyle(color: Colors.black),
                             decoration: InputDecoration(
+                              counterText: '',
                               filled: true,
-                              fillColor: Color(0xFF1C2341),
+                              fillColor: Color(0xFFF2BD8B),
                               hintText: "Mobile No.",
+                              hintStyle: TextStyle(color: Colors.black),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.grey, width: 0.0),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                              ),
                               border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.grey, width: 0.0),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(12)),
                               ),
@@ -108,11 +136,21 @@ class WelcomeScreenState extends State {
                                     _controller.checkTextFieldEmpty();
                               });
                             },
+                            style: TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                               filled: true,
-                              fillColor: Color(0xFF1C2341),
+                              fillColor: Color(0xFFF2BD8B),
                               hintText: "City",
+                              hintStyle: TextStyle(color: Colors.black),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.grey, width: 0.0),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                              ),
                               border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.grey, width: 0.0),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(12)),
                               ),
