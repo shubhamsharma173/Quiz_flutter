@@ -26,28 +26,11 @@ class Body extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fill),
             SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 150),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    child: ProgressBar(),
-                  ),
-                  Expanded(
-                    child: PageView.builder(
-                      // Block swipe to next qn
-                      physics: NeverScrollableScrollPhysics(),
-                      controller: _questionController.pageController,
-                      onPageChanged: _questionController.updateTheQnNum,
-                      itemCount: _questionController.questions.length,
-                      itemBuilder: (context, index) => QuestionCard(
-                          question: _questionController.questions[index]),
-                    ),
-                  ),
+                  SizedBox(height: 50),
                   Center(
                     child: Obx(
                       () => Text.rich(
@@ -71,7 +54,23 @@ class Body extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 130),
+                  SizedBox(height: 30),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                    child: ProgressBar(),
+                  ),
+                  Expanded(
+                    child: PageView.builder(
+                      // Block swipe to next qn
+                      physics: NeverScrollableScrollPhysics(),
+                      controller: _questionController.pageController,
+                      onPageChanged: _questionController.updateTheQnNum,
+                      itemCount: _questionController.questions.length,
+                      itemBuilder: (context, index) => QuestionCard(
+                          question: _questionController.questions[index]),
+                    ),
+                  ),
                 ],
               ),
             )

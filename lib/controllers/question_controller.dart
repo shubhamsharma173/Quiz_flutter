@@ -119,7 +119,7 @@ class QuestionController extends GetxController
       _animationController.forward().whenComplete(nextQuestion);
     } else {
       // Get package provide us simple way to navigate another page
-      Get.to(ScoreScreen());
+      Get.to(BackgroundVideo());
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 import 'dart:convert';
 import '../../../controllers/question_controller.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,14 @@ class DataController extends GetxController
   final textController_2 = TextEditingController();
   final textController_3 = TextEditingController();
 
+  String _cityValue;
+
+  String get chosenValue => this._cityValue;
+
+  changeCity(String city) {
+    _cityValue = city;
+  }
+
   clearTextFieldOnStart() {
     textController_1.clear();
     textController_2.clear();
@@ -41,7 +50,9 @@ class DataController extends GetxController
               body: jsonEncode(<String, String>{
                 'name': this.textController_1.text,
                 'mobile': this.textController_2.text,
-                'city': this.textController_3.text,
+                'city': _cityValue == "Other"
+                    ? this.textController_3.text
+                    : _cityValue,
                 'score': (_qnController.numOfCorrectAns * 20).toString(),
                 'timeTaken': (_qnController.timeTaken * 10).toStringAsFixed(2),
               }));
@@ -61,16 +72,17 @@ class DataController extends GetxController
     text1 = textController_1.text;
     text2 = textController_2.text;
     text3 = textController_3.text;
-
     // Checking all TextFields.
-    if (text1 == '' || text2 == '' || text3 == '' || text2.length < 10) {
-      // Put your code here which you want to execute when Text Field is Empty.
-      print('Text Field is empty, Please Fill All Data');
-      return false;
+    if (text1 != '' &&
+        text2 != '' &&
+        !(text2.length < 10) &&
+        _cityValue != null) {
+      if (_cityValue == "Other" && text3 == '')
+        return false;
+      else
+        return true;
     } else {
-      // Put your code here, which you want to execute when Text Field is NOT Empty.
-      print('Not Empty, All Text Input is Filled.');
-      return true;
+      return false;
     }
   }
 }

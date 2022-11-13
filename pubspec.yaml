@@ -64,6 +64,12 @@ flutter:
     - assets/images/5.png
     - assets/images/6.png
     - assets/video/product.mp4
+    - assets/video/1.mp4
+    - assets/video/2.mp4
+    - assets/video/3.mp4
+    - assets/video/4.mp4
+    - assets/video/5.mp4
+    - assets/video/6.mp4
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
