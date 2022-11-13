@@ -393,7 +393,7 @@ class WelcomeScreenState extends State {
                           Spacer(),
                           ElevatedButton(
                             onPressed: _controller.buttonEnabled
-                                ? () => {Get.to(RulesScreen())}
+                                ? () => {Get.to(() => RulesScreen())}
                                 : null,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,

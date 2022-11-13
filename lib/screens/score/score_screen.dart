@@ -48,7 +48,9 @@ class _BackgroundVideoState extends State<BackgroundVideo> {
       if (_vController.value.position == _vController.value.duration &&
           _vController.value.duration > Duration(seconds: 1)) {
         print('background video Ended-------------------');
-        _vController.seekTo(Duration(seconds: 14));
+        _vController.seekTo(Duration(
+          milliseconds: 15000,
+        ));
       }
     });
     setState(() {});
@@ -63,33 +65,42 @@ class _BackgroundVideoState extends State<BackgroundVideo> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        // Adjusted theme colors to match logo.
-        // primaryColor: Color(0xffb55e28),
-        // accentColor: Color(0xffffd544),
-      ),
-      home: SafeArea(
-        child: Scaffold(
-          // TODO 6: Create a Stack Widget
-          body: Stack(
-            children: <Widget>[
-              // TODO 7: Add a SizedBox to contain our video.
-              SizedBox.expand(
-                child: FittedBox(
-                  // If your background video doesn't look right, try changing the BoxFit property.
-                  // BoxFit.fill created the look I was going for.
-                  fit: BoxFit.fill,
-                  child: SizedBox(
-                    width: _vController.value.size?.width ?? 0,
-                    height: _vController.value.size?.height ?? 0,
-                    child: VideoPlayer(_vController),
-                  ),
+    return SafeArea(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          // Flutter show the back button automatically
+          backgroundColor: Colors.white.withOpacity(0.01),
+          elevation: 0,
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.leaderboard,
+                color: Colors.white,
+              ),
+              onPressed: () => {Get.to(LeaderboardScreen())},
+            )
+          ],
+        ),
+        // TODO 6: Create a Stack Widget
+        body: Stack(
+          children: <Widget>[
+            // TODO 7: Add a SizedBox to contain our video.
+            SizedBox.expand(
+              child: FittedBox(
+                // If your background video doesn't look right, try changing the BoxFit property.
+                // BoxFit.fill created the look I was going for.
+                fit: BoxFit.fill,
+                child: SizedBox(
+                  width:  100,
+                  height: 100,
+                  child: VideoPlayer(_vController),
                 ),
               ),
-              ScoreScreen()
-            ],
-          ),
+            ),
+            ScoreScreen()
+          ],
         ),
       ),
     );
@@ -104,6 +115,10 @@ class _BackgroundVideoState extends State<BackgroundVideo> {
 }
 
 class ScoreScreen extends StatelessWidget {
+  const ScoreScreen({
+    Key key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     QuestionController _qnController = Get.put(QuestionController());
@@ -122,71 +137,52 @@ class ScoreScreen extends StatelessWidget {
           //   bottomRight: const Radius.circular(10.0),
           // ),
         ),
-        child: Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            // Flutter show the back button automatically
-            backgroundColor: Colors.white.withAlpha(1),
-            elevation: 0,
-            actions: [
-              IconButton(
-                icon: Icon(
-                  Icons.leaderboard,
-                  color: Colors.white,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Column(
+              children: [
+                SizedBox(height: 20),
+                Text(
+                  "Score",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3
+                      .copyWith(color: Colors.white),
                 ),
-                onPressed: () => {Get.to(LeaderboardScreen())},
-              )
-            ],
-          ),
-          backgroundColor: Colors.white.withAlpha(1),
-          body: Stack(
-            fit: StackFit.expand,
-            children: [
-              Column(
-                children: [
-                  SizedBox(height: 20),
-                  Text(
-                    "Score",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline3
-                        .copyWith(color: Colors.white),
-                  ),
-                  Text(
-                    "${_qnController.numOfCorrectAns * 20}/${_qnController.questions.length * 20}",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4
-                        .copyWith(color: Colors.white),
-                  ),
-                  Spacer(flex: 6),
-                  InkWell(
-                    onTap: () => {Get.deleteAll(), Get.to(WelcomeScreen())},
-                    child: Container(
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(kDefaultPadding * 0.75),
-                      // 15
-                      decoration: BoxDecoration(
-                        gradient: kPrimaryGradient,
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                      ),
-                      child: Text(
-                        "Play again",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1,
-                            fontSize: 18),
-                      ),
+                Text(
+                  "${_qnController.numOfCorrectAns * 20}/${_qnController.questions.length * 20}",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline4
+                      .copyWith(color: Colors.white),
+                ),
+                Spacer(flex: 6),
+                InkWell(
+                  onTap: () => {Get.deleteAll(), Get.to(WelcomeScreen())},
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(kDefaultPadding * 0.75),
+                    // 15
+                    decoration: BoxDecoration(
+                      gradient: kPrimaryGradient,
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    child: Text(
+                      "Play again",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1,
+                          fontSize: 18),
                     ),
                   ),
-                  Spacer(flex: 1),
-                ],
-              )
-            ],
-          ),
+                ),
+                Spacer(flex: 1),
+              ],
+            )
+          ],
         ));
   }
 }
