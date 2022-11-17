@@ -169,7 +169,7 @@ class WelcomeScreenState extends State {
                                 isExpanded: true,
                                 underline: SizedBox(),
                                 focusColor: Colors.black,
-                                dropdownColor: Colors.brown,
+                                dropdownColor: Color(0xFFF2BD8B),
                                 value: _chosenValue,
                                 //elevation: 5,
                                 style: TextStyle(color: Colors.black),

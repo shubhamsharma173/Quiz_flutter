@@ -2,25 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../constants.dart';
 import '../../../controllers/question_controller.dart';
-import '../../../models/Questions.dart';
-import 'package:flutter_svg/svg.dart';
-
 import 'progress_bar.dart';
 import 'question_card.dart';
 
-class Body extends StatelessWidget {
-  const Body({
-    Key key,
-  }) : super(key: key);
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  QuestionController _questionController = Get.put(QuestionController());
+
+  String start_image = "assets/images/1.png";
+
+  changeBackground() {
+    String image =
+        "assets/images/${_questionController.questionNumber.value}.png";
+    setState(() {
+      start_image = image;
+    });
+  }
+
+  void changePage(int index) {
+    changeBackground();
+    _questionController.updateTheQnNum(index);
+  }
+
+  // const Body({
+  //   Key key,
+  // }) : super(key: key);
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // So that we have acccess our controller
-    QuestionController _questionController = Get.put(QuestionController());
+    // So that we have access our controller
+    changeBackground();
     return Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/bg.png"),
+            image: AssetImage(start_image),
             fit: BoxFit.cover,
           ),
         ),
@@ -65,7 +87,7 @@ class Body extends StatelessWidget {
                       // Block swipe to next qn
                       physics: NeverScrollableScrollPhysics(),
                       controller: _questionController.pageController,
-                      onPageChanged: _questionController.updateTheQnNum,
+                      onPageChanged: changePage,
                       itemCount: _questionController.questions.length,
                       itemBuilder: (context, index) => QuestionCard(
                           question: _questionController.questions[index]),

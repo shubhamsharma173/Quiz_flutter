@@ -37,7 +37,7 @@ const List sample_data = [
     "question": "What is the Tagline of Oaken Glow?",
     "options": [
       'Smoky taste crafted by fire',
-      'OakInfused Peat Fired, \npremium whisky',
+      'Oak Infused Peat Fired, \npremium whisky',
       'Fiery blend whisky',
       'Premium Scotch Whisky'
     ],

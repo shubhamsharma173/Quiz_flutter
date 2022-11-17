@@ -157,7 +157,7 @@ class ScoreScreen extends StatelessWidget {
                       .headline4
                       .copyWith(color: Colors.white),
                 ),
-                Spacer(flex: 6),
+                Spacer(flex: 4),
                 InkWell(
                   onTap: () => {Get.deleteAll(), Get.to(WelcomeScreen())},
                   child: Container(
