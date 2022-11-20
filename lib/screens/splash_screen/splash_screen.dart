@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 
+import '../../constants.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -25,12 +27,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Image.asset('assets/icons/ic_launcher.png'),
-      ),
-    );
+    return Container(
+        padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        constraints: BoxConstraints.expand(),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/landing.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: null);
   }
 }

@@ -57,6 +57,7 @@ flutter:
     - assets/images/bg.png
     - assets/images/welcomebg.png
     - assets/images/rulesbg.png
+    - assets/images/landing.png
     - assets/images/1.png
     - assets/images/2.png
     - assets/images/3.png

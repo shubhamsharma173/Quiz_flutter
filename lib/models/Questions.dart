@@ -28,7 +28,7 @@ const List sample_data = [
   {
     "id": 4,
     "question":
-        "Oaken glow is a unique blend of scotch malts and Indian grain spirits",
+        "Oaken glow is a unique blend of Scotch malts and Indian grain spirits",
     "options": ['Yes', 'No'],
     "answer_index": 0,
   },
@@ -36,7 +36,7 @@ const List sample_data = [
     "id": 5,
     "question": "What is the Tagline of Oaken Glow?",
     "options": [
-      'Smoky taste crafted by fire',
+      'A smoky taste crafted by fire',
       'Oak Infused Peat Fired, \npremium whisky',
       'Fiery blend whisky',
       'Premium Scotch Whisky'

@@ -97,7 +97,7 @@ class _ExtraScreenState extends State<ExtraScreen> {
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                         child: Text(
-                          "Ignite",
+                          "Let's Go",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
