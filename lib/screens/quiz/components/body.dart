@@ -62,14 +62,14 @@ class _BodyState extends State<Body> {
                           style: Theme.of(context)
                               .textTheme
                               .headline4
-                              .copyWith(color: Colors.white),
+                              ?.copyWith(color: Colors.white),
                           children: [
                             TextSpan(
                               text: "/${_questionController.questions.length}",
                               style: Theme.of(context)
                                   .textTheme
                                   .headline5
-                                  .copyWith(color: Colors.white),
+                                  ?.copyWith(color: Colors.white),
                             ),
                           ],
                         ),
@@ -80,7 +80,7 @@ class _BodyState extends State<Body> {
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    child: ProgressBar(),
+                    child: ProgressBar(key: null,),
                   ),
                   Expanded(
                     child: PageView.builder(
@@ -90,7 +90,7 @@ class _BodyState extends State<Body> {
                       onPageChanged: changePage,
                       itemCount: _questionController.questions.length,
                       itemBuilder: (context, index) => QuestionCard(
-                          question: _questionController.questions[index]),
+                          question: _questionController.questions[index], key: null,),
                     ),
                   ),
                 ],

@@ -9,13 +9,13 @@ class QuestionController extends GetxController
     with GetSingleTickerProviderStateMixin {
   // Lets animated our progress bar
 
-  AnimationController _animationController;
-  Animation _animation;
+  late AnimationController _animationController;
+  late Animation _animation;
 
   // so that we can access our animation outside
   Animation get animation => this._animation;
 
-  PageController _pageController;
+  late PageController _pageController;
 
   PageController get pageController => this._pageController;
 
@@ -35,11 +35,11 @@ class QuestionController extends GetxController
 
   bool get isAnswered => this._isAnswered;
 
-  int _correctAns;
+  late int _correctAns;
 
   int get correctAns => this._correctAns;
 
-  int _selectedAns;
+  late int _selectedAns;
 
   int get selectedAns => this._selectedAns;
 

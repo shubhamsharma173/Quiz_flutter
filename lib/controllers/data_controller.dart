@@ -24,7 +24,7 @@ class DataController extends GetxController
   final textController_2 = TextEditingController();
   final textController_3 = TextEditingController();
 
-  String _cityValue;
+  late String _cityValue;
 
   String get chosenValue => this._cityValue;
 

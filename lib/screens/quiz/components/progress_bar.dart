@@ -7,7 +7,7 @@ import '../../../constants.dart';
 
 class ProgressBar extends StatelessWidget {
   const ProgressBar({
-    Key key,
+    required Key? key,
   }) : super(key: key);
 
   @override

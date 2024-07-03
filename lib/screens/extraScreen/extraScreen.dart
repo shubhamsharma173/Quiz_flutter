@@ -13,8 +13,8 @@ class ExtraScreen extends StatefulWidget {
 }
 
 class _ExtraScreenState extends State<ExtraScreen> {
-  VideoPlayerController _vController;
-  Future<void> _initializeVideoPlayerFuture;
+  late VideoPlayerController _vController;
+  late Future<void> _initializeVideoPlayerFuture;
   QuestionController _qnController = Get.put(QuestionController());
 
   @override

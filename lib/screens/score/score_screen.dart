@@ -14,8 +14,8 @@ class BackgroundVideo extends StatefulWidget {
 
 class _BackgroundVideoState extends State<BackgroundVideo> {
   // TODO 4: Create a VideoPlayerController object.
-  VideoPlayerController _vController;
-  Future<void> _initializeVideoPlayerFuture;
+  late VideoPlayerController _vController;
+  late Future<void> _initializeVideoPlayerFuture;
   QuestionController _qnController = Get.put(QuestionController());
 
   String getBG() {
@@ -99,7 +99,7 @@ class _BackgroundVideoState extends State<BackgroundVideo> {
                 ),
               ),
             ),
-            ScoreScreen()
+            ScoreScreen(key: null,)
           ],
         ),
       ),
@@ -116,7 +116,7 @@ class _BackgroundVideoState extends State<BackgroundVideo> {
 
 class ScoreScreen extends StatelessWidget {
   const ScoreScreen({
-    Key key,
+    required Key? key,
   }) : super(key: key);
 
   @override
@@ -148,14 +148,14 @@ class ScoreScreen extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .headline3
-                      .copyWith(color: Colors.white),
+                      ?.copyWith(color: Colors.white),
                 ),
                 Text(
                   "${_qnController.numOfCorrectAns * 20}/${_qnController.questions.length * 20}",
                   style: Theme.of(context)
                       .textTheme
                       .headline4
-                      .copyWith(color: Colors.white),
+                      ?.copyWith(color: Colors.white),
                 ),
                 Spacer(flex: 4),
                 InkWell(
